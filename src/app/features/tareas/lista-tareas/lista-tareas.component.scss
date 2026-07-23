@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .titulo {
+    margin: 0;
+    color: #1A237E;
+    font-weight: 600;
+  }
+  
+  .estado-carga,
+  .estado-error,
+  .estado-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #757575;
+    gap: 12px;
+  }
+  
+  .tareas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }

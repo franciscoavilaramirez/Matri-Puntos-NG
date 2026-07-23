@@ -1,0 +1,41 @@
+<div class="lista-tareas-container">
+    <div class="header">
+      <h2 class="titulo">Tareas del hogar</h2>
+      <button mat-flat-button color="primary" (click)="abrirDialogoCrearTarea()">
+        <mat-icon>add</mat-icon>
+        Nueva tarea
+      </button>
+    </div>
+  
+    @if (cargando()) {
+      <div class="estado-carga">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    } @else if (error()) {
+      <div class="estado-error">
+        <p>{{ error() }}</p>
+        <button (click)="cargarTareas()">Reintentar</button>
+      </div>
+    } @else if (tareas().length === 0) {
+      <div class="estado-vacio">
+        <p>No hay tareas activas en este momento 🎉</p>
+      </div>
+    } @else {
+      <div class="tareas-grid">
+        @for (tarea of tareas(); track tarea.id) {
+            <app-task-card
+              [tarea]="tarea"
+              (asignarme)="onAsignarme($event)"
+              (asignarACompanero)="onAsignarACompanero($event)"
+              (completar)="onCompletar($event)"
+              (aceptar)="onAceptar($event)"
+              (rechazar)="onRechazar($event)"
+              (editar)="onEditar($event)"
+              (eliminar)="onEliminar($event)"
+              (desasignar)="onDesasignar($event)"
+
+            />
+          }
+      </div>
+    }
+  </div>

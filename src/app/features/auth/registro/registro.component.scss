@@ -1,0 +1,137 @@
+.registro-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #E3F2FD 0%, #F5F6F8 100%);
+    padding: 16px;
+  }
+  
+  .registro-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 32px 24px;
+    border-radius: 20px !important;
+  }
+  
+  .registro-header {
+    text-align: center;
+    margin-bottom: 20px;
+  
+    .logo-icon {
+      font-size: 44px;
+      margin-bottom: 8px;
+    }
+  
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+      color: #1A237E;
+    }
+  
+    .subtitle {
+      color: #757575;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  }
+  
+  .modo-toggle {
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+  
+    ::ng-deep .mat-button-toggle {
+      flex: 1;
+      text-align: center;
+    }
+  
+    ::ng-deep .mat-button-toggle-label-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 0;
+      font-size: 13px;
+    }
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .error-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFEBEE;
+    color: #C62828;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  .submit-btn {
+    height: 48px;
+    border-radius: 12px !important;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #757575;
+  
+    a {
+      color: #1565C0;
+      font-weight: 500;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  // Vista de éxito con código de invitación
+  .success-view {
+    text-align: center;
+    padding: 16px 0;
+  
+    .success-icon {
+      font-size: 56px;
+      margin-bottom: 12px;
+    }
+  
+    h2 {
+      margin: 0 0 8px;
+      color: #1A237E;
+      font-size: 20px;
+    }
+  
+    p {
+      color: #757575;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .codigo-box {
+    background: var(--task-reward-bg, #D1F2E8);
+    border: 2px dashed var(--task-reward-text, #0F7B6C);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  
+    .codigo-text {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--task-reward-text, #0F7B6C);
+    }
+  }

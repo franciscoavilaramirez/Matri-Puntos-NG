@@ -1,0 +1,36 @@
+.task-card {
+    border-radius: 12px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  
+    &.card-mia {
+      background: #E3F2FD;
+      border-left: 4px solid #2196F3;
+    }
+  
+    &.card-pareja {
+      background: #FFF3E0;
+      border-left: 4px solid #FB8C00;
+    }
+  
+    &.card-disponible {
+      background: #FAFAFA;
+      border-left: 4px solid #E0E0E0;
+    }
+  
+    &.card-validacion {
+      background: #FFFDE7;
+      border-left: 4px solid #FDD835;
+    }
+    
+    .task-header-right {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+  }
+  

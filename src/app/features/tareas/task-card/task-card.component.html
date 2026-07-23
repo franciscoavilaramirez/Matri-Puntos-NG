@@ -1,0 +1,90 @@
+<mat-card class="task-card" [ngClass]="cardClass()">
+    <mat-card-content>
+      <div class="task-header">
+        <h3 class="task-nombre">{{ tarea().nombre }}</h3>
+        <div class="task-header-right">
+          <span class="task-puntos">
+            <mat-icon>stars</mat-icon>
+            {{ tarea().valorPuntos }}
+          </span>
+  
+          @if (puedeGestionar()) {
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Opciones">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onEditar()">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+              </button>
+              <button mat-menu-item (click)="onEliminar()">
+                <mat-icon>delete</mat-icon>
+                <span>Eliminar</span>
+              </button>
+            </mat-menu>
+          }
+        </div>
+      </div>
+  
+      @if (tarea().notasAdicionales) {
+        <p class="task-notas">{{ tarea().notasAdicionales }}</p>
+      }
+  
+      <div class="task-footer">
+        @if (enValidacion()) {
+          <span class="task-estado-chip validacion">
+            <mat-icon>hourglass_empty</mat-icon>
+            En validación
+          </span>
+        } @else if (tarea().asignadoANombre) {
+          <span class="task-asignado">
+            <mat-icon>person</mat-icon>
+            {{ tarea().asignadoANombre }}
+          </span>
+        } @else {
+          <span class="task-asignado sin-asignar">
+            <mat-icon>person_outline</mat-icon>
+            Sin asignar
+          </span>
+        }
+      </div>
+    </mat-card-content>
+  
+    <mat-card-actions class="task-actions">
+      @if (sinAsignar() && tarea().estado === 'PENDIENTE') {
+        <button mat-stroked-button color="primary" (click)="onAsignarme()">
+          <mat-icon>add_task</mat-icon>
+          Asignarme tarea
+        </button>
+  
+        @if (companero(); as comp) {
+          <button mat-stroked-button color="accent" (click)="onAsignarACompanero()">
+            <mat-icon>person_add</mat-icon>
+            Asignar a {{ comp.nombre }}
+          </button>
+        }
+      }
+  
+      @if (puedeCompletar()) {
+        <button mat-flat-button color="primary" (click)="onCompletar()">
+          <mat-icon>check</mat-icon>
+          Tarea finalizada
+        </button>
+      }
+      @if (puedeDesasignar()) {
+        <button mat-button color="warn" (click)="onDesasignar()">
+          <mat-icon>person_remove</mat-icon>
+          Desasignarme
+        </button>
+      }
+  
+      @if (puedeValidar()) {
+        <button mat-icon-button color="primary" (click)="onAceptar()" aria-label="Aceptar">
+          <mat-icon>thumb_up</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onRechazar()" aria-label="Rechazar">
+          <mat-icon>thumb_down</mat-icon>
+        </button>
+      }
+    </mat-card-actions>
+  </mat-card>

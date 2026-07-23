@@ -1,1 +1,51 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--app-background);
+}
+
+// ============================================
+// MatriPuntos - Colores custom por estado de tarea
+// ============================================
+:root {
+  --task-completed-bg: #D4EDDA;
+  --task-completed-text: #155724;
+
+  --task-mine-bg: #D6E9FF;
+  --task-mine-text: #0056B3;
+
+  --task-partner-bg: #FFE8CC;
+  --task-partner-text: #B36B00;
+
+  --task-validation-bg: #FFF3CD;
+  --task-validation-text: #856404;
+
+  --task-reward-bg: #D1F2E8;
+  --task-reward-text: #0F7B6C;
+
+  --task-neutral-bg: #FFFFFF;
+  --task-neutral-text: #3C4043;
+  --task-neutral-border: #E0E0E0;
+
+  --app-background: #F5F6F8;
+  --card-radius: 16px;
+}

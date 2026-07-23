@@ -1,0 +1,101 @@
+<div class="registro-container">
+    <mat-card class="registro-card">
+  
+      @if (codigoGenerado()) {
+        <!-- Pantalla de éxito con código para compartir -->
+        <div class="success-view">
+          <div class="success-icon">🎉</div>
+          <h2>¡Hogar creado con éxito!</h2>
+          <p>Comparte este código con tu pareja para que se una:</p>
+          <div class="codigo-box">
+            <span class="codigo-text">{{ codigoGenerado() }}</span>
+          </div>
+          <button mat-flat-button color="primary" class="full-width" (click)="continuar()">
+            Ir a mis tareas
+          </button>
+        </div>
+      } @else {
+        <div class="registro-header">
+          <div class="logo-icon">💑</div>
+          <h1>Crea tu cuenta</h1>
+          <p class="subtitle">Empieza a ganar matripuntos</p>
+        </div>
+  
+        <mat-button-toggle-group
+          class="modo-toggle"
+          [value]="modo()"
+          (change)="cambiarModo($event.value)"
+        >
+          <mat-button-toggle value="crear">
+            <mat-icon>home</mat-icon>
+            Crear hogar nuevo
+          </mat-button-toggle>
+          <mat-button-toggle value="unirse">
+            <mat-icon>group_add</mat-icon>
+            Unirme a hogar
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+  
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" placeholder="Tu nombre" />
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" placeholder="tu@email.com" />
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hidePassword() ? 'password' : 'text'" formControlName="password" />
+            <button mat-icon-button matSuffix type="button" (click)="hidePassword.set(!hidePassword())">
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+  
+          @if (esCrear()) {
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre del hogar</mat-label>
+              <input matInput formControlName="nombreHogar" placeholder="Ej: Casa García" />
+              <mat-icon matSuffix>home</mat-icon>
+            </mat-form-field>
+          } @else {
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Código de invitación</mat-label>
+              <input matInput formControlName="codigoInvitacion" placeholder="Ej: ABC123" />
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+          }
+  
+          @if (errorMsg()) {
+            <div class="error-banner">
+              <mat-icon>error_outline</mat-icon>
+              <span>{{ errorMsg() }}</span>
+            </div>
+          }
+  
+          <button
+            mat-flat-button
+            color="primary"
+            class="full-width submit-btn"
+            type="submit"
+            [disabled]="loading()"
+          >
+            @if (loading()) {
+              <mat-spinner diameter="20" />
+            } @else {
+              Registrarme
+            }
+          </button>
+        </form>
+  
+        <div class="login-link">
+          ¿Ya tienes cuenta? <a routerLink="/auth/login">Inicia sesión</a>
+        </div>
+      }
+    </mat-card>
+  </div>

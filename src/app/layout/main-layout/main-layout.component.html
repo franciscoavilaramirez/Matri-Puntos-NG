@@ -1,0 +1,59 @@
+<mat-toolbar class="navbar">
+    <div class="navbar-left">
+      <span class="hogar-icon">🏠</span>
+      <span class="hogar-nombre">{{ sessionService.usuarioActual()?.nombreHogar }}</span>
+    </div>
+  
+    <div class="navbar-center">
+      <div class="puntos-chip mine">
+        <mat-icon>person</mat-icon>
+        <span>Tú: {{ sessionService.usuarioActual()?.matriPuntos ?? 0 }}</span>
+      </div>
+  
+      @if (sessionService.companero(); as companero) {
+        <div class="puntos-chip partner">
+          <mat-icon>favorite</mat-icon>
+          <span>{{ companero.nombre }}: {{ companero.matriPuntos }}</span>
+        </div>
+      }
+    </div>
+  
+    <div class="navbar-right">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="notificacionesMenu"
+        (click)="abrirPanelNotificaciones()"
+        aria-label="Notificaciones"
+      >
+        <mat-icon [matBadge]="cantidadSinLeer() > 0 ? cantidadSinLeer() : null" matBadgeColor="warn">
+          notifications
+        </mat-icon>
+      </button>
+  
+      <mat-menu #notificacionesMenu="matMenu" class="notificaciones-menu">
+        @if (cargandoNotificaciones()) {
+          <div class="menu-loading">Cargando...</div>
+        } @else if (notificacionesSinLeer().length === 0) {
+          <div class="menu-empty">
+            <mat-icon>notifications_none</mat-icon>
+            <span>No tienes notificaciones nuevas</span>
+          </div>
+        } @else {
+          @for (notificacion of notificacionesSinLeer(); track notificacion.id) {
+            <button mat-menu-item (click)="seleccionarNotificacion(notificacion)">
+              <mat-icon>task_alt</mat-icon>
+              <span class="notif-texto">{{ notificacion.mensaje }}</span>
+            </button>
+          }
+        }
+      </mat-menu>
+  
+      <button mat-icon-button (click)="cerrarSesion()" aria-label="Cerrar sesión">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  
+  <main class="page-content">
+    <router-outlet />
+  </main>
