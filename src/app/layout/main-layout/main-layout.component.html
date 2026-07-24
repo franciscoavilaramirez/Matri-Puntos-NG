@@ -1,19 +1,19 @@
 <mat-toolbar class="navbar">
-    <div class="navbar-left">
-      <span class="hogar-icon">🏠</span>
+  <div class="navbar-left" routerLink="/hogar" style="cursor: pointer;">
+    <span class="hogar-icon">🏠</span>
       <span class="hogar-nombre">{{ sessionService.usuarioActual()?.nombreHogar }}</span>
     </div>
   
     <div class="navbar-center">
       <div class="puntos-chip mine">
         <mat-icon>person</mat-icon>
-        <span>Tú: {{ sessionService.usuarioActual()?.matriPuntos ?? 0 }}</span>
+        <span>Tú: {{ sessionService.usuarioActual()?.matriPuntos ?? 0 }} <span class="matri-puntos-label">Matri-Puntos</span></span>
       </div>
   
       @if (sessionService.companero(); as companero) {
         <div class="puntos-chip partner">
           <mat-icon>favorite</mat-icon>
-          <span>{{ companero.nombre }}: {{ companero.matriPuntos }}</span>
+          <span>{{ companero.nombre }}: {{ companero.matriPuntos }} <span class="matri-puntos-label">Matri-Puntos</span></span>
         </div>
       }
     </div>

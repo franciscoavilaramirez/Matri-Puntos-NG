@@ -44,6 +44,12 @@ export const routes: Routes = [
           import('./features/tareas/catalogo-tareas/catalogo-tareas.component').then(m => m.CatalogoTareasComponent)
       },
       {
+        path: 'hogar',
+        loadComponent: () =>
+          import('./features/hogar/hogar-info/hogar-info.component').then(m => m.HogarInfoComponent),
+        canActivate: [authGuard]
+      },
+      {
         path: '',
         redirectTo: 'tareas',
         pathMatch: 'full'

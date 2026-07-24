@@ -1,0 +1,31 @@
+<div class="hogar-container">
+    <h2 class="page-title">
+      <span class="icon">🏠</span> Info Hogar
+    </h2>
+  
+    @if (loading()) {
+      <p>Cargando información del hogar...</p>
+    } @else {
+      @if (hogar(); as h) {
+        <mat-card>
+          <mat-card-title>{{ h.nombre }}</mat-card-title>
+          <mat-card-content>
+            <p>Comparte este código para invitar a alguien a tu hogar:</p>
+            <div class="codigo-container">
+              <span class="codigo">{{ h.codigoInvitacion }}</span>
+              <button mat-icon-button (click)="copiarCodigo()">
+                <mat-icon>content_copy</mat-icon>
+              </button>
+            </div>
+  
+            <h3>Miembros</h3>
+            <ul>
+              @for (m of h.miembros; track m.id) {
+                <li>{{ m.nombre }} — {{ m.matriPuntos }} <span class="matri-puntos-label">Matri-Puntos</span></li>
+              }
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      }
+    }
+  </div>

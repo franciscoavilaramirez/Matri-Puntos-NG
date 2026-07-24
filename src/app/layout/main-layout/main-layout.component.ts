@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Subscription, interval, startWith, switchMap } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,6 +23,7 @@ const POLLING_INTERVAL_MS = 20000;
   imports: [
     CommonModule,
     RouterOutlet,
+    RouterLink,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
