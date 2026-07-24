@@ -1,17 +1,7 @@
-.matri-puntos-label {
-    font-weight: 700;
-    font-size: 0.85rem;
-    background: linear-gradient(90deg, #ff6ec4, #7873f5, #4adede);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: gradient-shift 3s ease infinite;
-    margin-left: 4px;
-  }
-  
-  @keyframes gradient-shift {
-    0% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-    100% { background-position: 0% center; }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
   }

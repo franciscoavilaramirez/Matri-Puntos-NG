@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HogarService } from '../../../core/services/hogar.service';
 import { Hogar } from '../../../core/models/hogar.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hogar-info',
@@ -20,6 +21,8 @@ export class HogarInfoComponent implements OnInit {
 
   hogar = signal<Hogar | null>(null);
   loading = signal(true);
+  private router = inject(Router);
+
 
   ngOnInit() {
     this.hogarService.obtenerInfo().subscribe({
@@ -37,5 +40,8 @@ export class HogarInfoComponent implements OnInit {
       navigator.clipboard.writeText(codigo);
       this.snackBar.open('Código copiado al portapapeles', 'Cerrar', { duration: 2000 });
     }
+  }
+  volver() {
+    this.router.navigate(['/tareas']);
   }
 }

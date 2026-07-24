@@ -1,7 +1,12 @@
 <div class="hogar-container">
-    <h2 class="page-title">
-      <span class="icon">🏠</span> Info Hogar
-    </h2>
+    <div class="header-row">
+      <button mat-icon-button (click)="volver()" aria-label="Volver">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h2 class="page-title">
+        <span class="icon">🏠</span> Info Hogar
+      </h2>
+    </div>
   
     @if (loading()) {
       <p>Cargando información del hogar...</p>
