@@ -1,0 +1,49 @@
+<div class="catalogo-container">
+    <div class="header">
+      <button mat-icon-button (click)="volver()" aria-label="Volver">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <h2 class="titulo">Catálogo de tareas</h2>
+    </div>
+  
+    @if (cargando()) {
+      <div class="estado-carga">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+    } @else if (error()) {
+      <div class="estado-error">
+        <p>{{ error() }}</p>
+        <button (click)="cargarCatalogo()">Reintentar</button>
+      </div>
+    } @else if (tareas().length === 0) {
+      <div class="estado-vacio">
+        <p>No hay tareas en el catálogo 📋</p>
+      </div>
+    } @else {
+        <div class="catalogo-grid">
+            @for (tarea of tareas(); track tarea.id) {
+              <mat-card class="catalogo-card">
+                <mat-card-content>
+                  <h3 class="catalogo-nombre">{{ tarea.nombre }}</h3>
+    
+                  <p class="catalogo-puntos">
+                    <mat-icon>stars</mat-icon>
+                    {{ tarea.valorPuntos }} puntos
+                  </p>
+    
+                  @if (tarea.notasAdicionales) {
+                    <p class="catalogo-notas">{{ tarea.notasAdicionales }}</p>
+                  }
+                </mat-card-content>
+    
+                <mat-card-actions>
+                  <button mat-flat-button color="primary" (click)="activar(tarea.id)">
+                    <mat-icon>check_circle</mat-icon>
+                    Activar
+                  </button>
+                </mat-card-actions>
+              </mat-card>
+            }
+          </div>
+    }
+  </div>

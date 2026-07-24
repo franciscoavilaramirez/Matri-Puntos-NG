@@ -18,3 +18,16 @@ export interface LoginRequest {
     hogarId: number;
     codigoInvitacionHogar: string;
   }
+  export interface OlvidePasswordRequest {
+    email: string;
+  }
+  
+  export interface ResetearPasswordRequest {
+    token: string;
+    passwordNueva: string;
+    passwordNuevaConfirmacion: string;
+  }
+  
+  export interface MensajeResponse {
+    mensaje: string;
+  }

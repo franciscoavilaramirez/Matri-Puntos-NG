@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { LoginRequest, RegistroRequest, AuthResponse } from '../models';
+import { LoginRequest, RegistroRequest, AuthResponse, MensajeResponse, ResetearPasswordRequest } from '../models';
 
 const TOKEN_KEY = 'token';
 const USUARIO_ID_KEY = 'usuarioId';
@@ -46,5 +46,12 @@ export class AuthService {
   private guardarSesion(response: AuthResponse): void {
     localStorage.setItem(TOKEN_KEY, response.token);
     localStorage.setItem(USUARIO_ID_KEY, response.usuarioId.toString());
+  }
+  olvidePassword(email: string): Observable<MensajeResponse> {
+    return this.http.post<MensajeResponse>(`${this.apiUrl}/olvide-password`, { email });
+  }
+
+  resetearPassword(request: ResetearPasswordRequest): Observable<MensajeResponse> {
+    return this.http.post<MensajeResponse>(`${this.apiUrl}/resetear-password`, request);
   }
 }

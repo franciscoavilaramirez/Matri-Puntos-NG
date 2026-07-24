@@ -8,24 +8,24 @@
     }
   
     &.card-mia {
-      background: #E3F2FD;
-      border-left: 4px solid #2196F3;
-    }
-  
-    &.card-pareja {
-      background: #FFF3E0;
-      border-left: 4px solid #FB8C00;
-    }
-  
-    &.card-disponible {
-      background: #FAFAFA;
-      border-left: 4px solid #E0E0E0;
-    }
-  
-    &.card-validacion {
-      background: #FFFDE7;
-      border-left: 4px solid #FDD835;
-    }
+        background: #E3F2FD;
+        border-left: 4px solid #2196F3;
+      }
+    
+      &.card-pareja {
+        background: #F3E5F5;
+        border-left: 4px solid #8E24AA;
+      }
+    
+      &.card-disponible {
+        background: #ebe8e8;
+        border-left: 4px solid #c55454;
+      }
+    
+      &.card-validacion {
+        background: #FFFDE7;
+        border-left: 4px solid #FBC02D;
+      }
     
     .task-header-right {
         display: flex;

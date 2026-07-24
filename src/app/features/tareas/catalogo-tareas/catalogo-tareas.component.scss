@@ -1,12 +1,8 @@
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-  }
-  .header-actions {
-    display: flex;
     gap: 8px;
+    margin-bottom: 20px;
   }
   
   .titulo {
@@ -27,8 +23,27 @@
     gap: 12px;
   }
   
-  .tareas-grid {
+  .catalogo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 16px;
+  }
+  
+  .catalogo-card {
+    border-radius: 12px;
+  }
+  
+
+  
+  .catalogo-puntos {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #FF6F00;
+    font-weight: 500;
+  }
+  
+  .catalogo-notas {
+    color: #757575;
+    font-size: 0.9rem;
   }

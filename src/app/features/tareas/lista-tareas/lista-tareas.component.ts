@@ -13,6 +13,7 @@ import { Tarea, CrearTareaRequest, EditarTareaRequest } from '../../../core/mode
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { CrearTareaDialogComponent } from '../crear-tarea-dialog/crear-tarea-dialog.component';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-tareas',
@@ -28,6 +29,8 @@ import { ConfirmDialogComponent, ConfirmDialogData } from '../../../shared/confi
   styleUrl: './lista-tareas.component.scss'
 })
 export class ListaTareasComponent implements OnInit {
+  
+  private router = inject(Router);
   private tareaService = inject(TareaService);
   private usuarioService = inject(UsuarioService);
   private sessionService = inject(SessionService);
@@ -56,6 +59,9 @@ export class ListaTareasComponent implements OnInit {
         this.cargando.set(false);
       }
     });
+  }
+  irACatalogo(): void {
+    this.router.navigate(['/catalogo']);
   }
 
   abrirDialogoCrearTarea(): void {

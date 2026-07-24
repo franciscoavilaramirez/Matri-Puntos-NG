@@ -1,10 +1,16 @@
 <div class="lista-tareas-container">
     <div class="header">
       <h2 class="titulo">Tareas del hogar</h2>
-      <button mat-flat-button color="primary" (click)="abrirDialogoCrearTarea()">
-        <mat-icon>add</mat-icon>
-        Nueva tarea
-      </button>
+      <div class="header-actions">
+        <button mat-stroked-button (click)="irACatalogo()">
+          <mat-icon>list_alt</mat-icon>
+          Catálogo
+        </button>
+        <button mat-flat-button color="primary" (click)="abrirDialogoCrearTarea()">
+          <mat-icon>add</mat-icon>
+          Nueva tarea
+        </button>
+      </div>
     </div>
   
     @if (cargando()) {
@@ -38,4 +44,5 @@
           }
       </div>
     }
+    
   </div>
