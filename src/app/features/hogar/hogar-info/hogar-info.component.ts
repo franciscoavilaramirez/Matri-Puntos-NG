@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule],
   templateUrl: './hogar-info.component.html',
-  styleUrl: './hogar-info.component.scss'
+  styleUrl: './hogar-info.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class HogarInfoComponent implements OnInit {
   private hogarService = inject(HogarService);

@@ -1,102 +1,120 @@
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #FFFFFF !important;
-    color: #1A237E !important;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-    padding: 0 20px;
-    height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+
+  .hogar-icon {
+    font-size: 1.5rem;
   }
-  
+}
+
+.navbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.puntos-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+
+  mat-icon {
+    font-size: 1.1rem;
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+
+  &.mine {
+    background: var(--task-mine-bg);
+    color: var(--task-mine-text);
+  }
+
+  &.partner {
+    background: var(--task-partner-bg);
+    color: var(--task-partner-text);
+  }
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notificaciones-menu {
+  max-width: 340px;
+  min-width: 300px;
+}
+
+.menu-loading,
+.menu-empty {
+  padding: 20px;
+  text-align: center;
+  color: #757575;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: #BDBDBD;
+  }
+}
+
+.notif-texto {
+  white-space: normal;
+  line-height: 1.4;
+  font-size: 13px;
+}
+
+.page-content {
+  min-height: calc(100vh - 64px);
+  background: var(--app-background);
+  padding: 24px;
+}
+
+// 📱 Responsive: móvil en vertical
+@media (max-width: 480px) {
   .navbar-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    font-size: 16px;
-  
-    .hogar-icon {
-      font-size: 22px;
-    }
-  }
-  
-  
-  .navbar-center {
-    display: flex;
-    gap: 12px;
-    flex: 1;
-    justify-content: center;
-  
-    @media (max-width: 640px) {
+    .hogar-nombre {
       display: none;
     }
   }
-  
-  .puntos-chip {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-  
-    mat-icon {
-      font-size: 18px;
-      width: 18px;
-      height: 18px;
-    }
-  
-    &.mine {
-      background: var(--task-mine-bg);
-      color: var(--task-mine-text);
-    }
-  
-    &.partner {
-      background: var(--task-partner-bg);
-      color: var(--task-partner-text);
-    }
-  }
-  
-  .navbar-right {
-    display: flex;
-    align-items: center;
+
+  .navbar-center {
     gap: 4px;
   }
-  
-  .notificaciones-menu {
-    max-width: 340px;
-    min-width: 300px;
-  }
-  
-  .menu-loading,
-  .menu-empty {
-    padding: 20px;
-    text-align: center;
-    color: #757575;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  
-    mat-icon {
-      font-size: 32px;
-      width: 32px;
-      height: 32px;
-      color: #BDBDBD;
+
+  .puntos-chip {
+    padding: 2px 6px;
+    font-size: 0.75rem;
+
+    .matri-puntos-label {
+      display: none;
     }
   }
-  
-  .notif-texto {
-    white-space: normal;
-    line-height: 1.4;
-    font-size: 13px;
-  }
-  
+
   .page-content {
-    min-height: calc(100vh - 64px);
-    background: var(--app-background);
-    padding: 24px;
+    padding: 12px;
   }
+}

@@ -1,4 +1,4 @@
-import { Component, input, output, computed, inject } from '@angular/core';
+import { Component, input, output, computed, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,7 +13,9 @@ import { Tarea } from '../../../core/models';
   standalone: true,
   imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatMenuModule],
   templateUrl: './task-card.component.html',
-  styleUrl: './task-card.component.scss'
+  styleUrl: './task-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class TaskCardComponent {
   private authService = inject(AuthService);

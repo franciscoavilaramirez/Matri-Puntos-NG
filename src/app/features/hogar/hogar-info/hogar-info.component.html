@@ -26,7 +26,13 @@
             <h3>Miembros</h3>
             <ul>
               @for (m of h.miembros; track m.id) {
-                <li>{{ m.nombre }} — {{ m.matriPuntos }} <span class="matri-puntos-label">Matri-Puntos</span></li>
+                <li>
+                  <span class="miembro-nombre">{{ m.nombre }}</span>
+                  <span class="miembro-puntos">
+                    <span class="puntos-numero">{{ m.matriPuntos }}</span>
+                    <span class="matri-puntos-label">Matri-Puntos</span>
+                  </span>
+                </li>
               }
             </ul>
           </mat-card-content>

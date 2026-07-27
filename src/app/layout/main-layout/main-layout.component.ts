@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { Subscription, interval, startWith, switchMap } from 'rxjs';
+import { Subscription, interval, startWith, switchMap, tap } from 'rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,7 +32,9 @@ const POLLING_INTERVAL_MS = 20000;
     MatDividerModule
   ],
   templateUrl: './main-layout.component.html',
-  styleUrl: './main-layout.component.scss'
+  styleUrl: './main-layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class MainLayoutComponent implements OnInit, OnDestroy {
   private authService = inject(AuthService);
@@ -49,7 +51,7 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cargarPerfilYHogar();
-    this.iniciarPollingNotificaciones();
+    //this.iniciarPollingNotificaciones();
   }
 
   ngOnDestroy(): void {
@@ -57,13 +59,21 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
   }
 
   private cargarPerfilYHogar(): void {
-    this.usuarioService.obtenerMiPerfil().subscribe(usuario => {
-      this.sessionService.setUsuarioActual(usuario);
-
-      this.usuarioService.listarUsuariosDelHogar(usuario.hogarId).subscribe(miembros => {
+    this.usuarioService.obtenerMiPerfil()
+      .pipe(
+        tap(usuario => {
+          this.sessionService.setUsuarioActual(usuario);
+        }),
+        switchMap(usuario =>
+          this.usuarioService.listarUsuariosDelHogar(usuario.hogarId)
+        )
+      )
+      .subscribe(miembros => {
+  
         this.sessionService.setMiembrosHogar(miembros);
+  
+        this.iniciarPollingNotificaciones();
       });
-    });
   }
 
   private iniciarPollingNotificaciones(): void {
