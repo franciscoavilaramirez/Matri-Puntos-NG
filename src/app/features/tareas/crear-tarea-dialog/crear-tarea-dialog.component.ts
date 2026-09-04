@@ -36,7 +36,7 @@ export class CrearTareaDialogComponent {
     nombre: [this.data.tarea?.nombre ?? '', [Validators.required, Validators.maxLength(100)]],
     valorPuntos: [
       this.data.tarea?.valorPuntos ?? 10,
-      [Validators.required, Validators.min(1), Validators.max(999)]
+      [Validators.required, Validators.min(-999), Validators.max(999)]
     ],
     notasAdicionales: [this.data.tarea?.notasAdicionales ?? '']
   });

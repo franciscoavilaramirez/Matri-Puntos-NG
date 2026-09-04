@@ -58,6 +58,8 @@ export class TaskCardComponent {
     if (this.esDePareja()) return 'card-pareja';
     return 'card-disponible';
   });
+  esPenalizacion = computed(() => this.tarea().valorPuntos < 0);
+
 
   onAsignarme(): void {
     this.asignarme.emit(this.tarea().id);

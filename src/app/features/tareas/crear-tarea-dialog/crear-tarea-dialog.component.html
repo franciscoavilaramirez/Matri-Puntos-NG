@@ -11,13 +11,16 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="campo-completo">
-      <mat-label>Puntos</mat-label>
-      <input matInput type="number" formControlName="valorPuntos" min="1" max="999" />
+      <mat-label>Puntos (puede ser negativo para penalizaciones)</mat-label>
+      <input matInput type="number" formControlName="valorPuntos" />
       @if (form.get('valorPuntos')?.hasError('required') && form.get('valorPuntos')?.touched) {
         <mat-error>Los puntos son obligatorios</mat-error>
       }
       @if (form.get('valorPuntos')?.hasError('min')) {
-        <mat-error>Debe ser mayor que 0</mat-error>
+        <mat-error>No puede ser menor que -999</mat-error>
+      }
+      @if (form.get('valorPuntos')?.hasError('max')) {
+        <mat-error>No puede ser mayor que 999</mat-error>
       }
     </mat-form-field>
 

@@ -1,30 +1,35 @@
-<mat-card class="task-card" [ngClass]="cardClass()">
-    <mat-card-content>
-      <div class="task-header">
-        <h3 class="task-nombre">{{ tarea().nombre }}</h3>
-        <div class="task-header-right">
-          <span class="task-puntos">
-            <mat-icon>stars</mat-icon>
-            {{ tarea().valorPuntos }} <span class="matri-puntos-label">Matri-Puntos</span>
-          </span>
-  
-          @if (puedeGestionar()) {
-            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Opciones">
-              <mat-icon>more_vert</mat-icon>
+<mat-card class="task-card" [ngClass]="cardClass()" [class.card-penalizacion]="esPenalizacion()">
+  <mat-card-content>
+    <div class="task-header">
+      <h3 class="task-nombre" [class.texto-penalizacion]="esPenalizacion()">
+        @if (esPenalizacion()) {
+          <mat-icon class="icono-warning">warning</mat-icon>
+        }
+        {{ tarea().nombre }}
+      </h3>
+      <div class="task-header-right">
+        <span class="task-puntos" [class.texto-penalizacion]="esPenalizacion()">
+          <mat-icon>stars</mat-icon>
+          {{ tarea().valorPuntos }} <span class="matri-puntos-label">Matri-Puntos</span>
+        </span>
+
+        @if (puedeGestionar()) {
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Opciones">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="onEditar()">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
             </button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="onEditar()">
-                <mat-icon>edit</mat-icon>
-                <span>Editar</span>
-              </button>
-              <button mat-menu-item (click)="onEliminar()">
-                <mat-icon>delete</mat-icon>
-                <span>Eliminar</span>
-              </button>
-            </mat-menu>
-          }
-        </div>
+            <button mat-menu-item (click)="onEliminar()">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+          </mat-menu>
+        }
       </div>
+    </div>
   
       @if (tarea().notasAdicionales) {
         <p class="task-notas">{{ tarea().notasAdicionales }}</p>
